@@ -8,33 +8,29 @@ class Solution {
             return 0;
         }
 
-        if (n == 1 || n == 2) {
-            return n;
-        }
-        int start = 0;
+        int j = 1;
         int i = 1;
-        
+        int count = 1;
+
         while (i < n) {
-            int count = 1;
-            while (i > 0 && i < n && nums[i] == nums[i - 1]) {
+            
+            if (nums[i] == nums[i - 1]) {
                 ++count;
-                ++i;
+            } else {
+                count = 1;
             }
 
-            nums[start++] = nums[i - 1];
-            if (count >= 2) {
-                nums[start++] = nums[i - 1];
+            if (count <= 2) {
+                nums[j] = nums[i];
+                j++;
             }
+
+        
             ++i;
         }
 
+        return j;
 
-        if (nums[n - 1] == nums[n - 2]) {
-            return start;
-        }
-
-        nums[start] = nums[n - 1];
-        return start + 1;
 
     }
 }
